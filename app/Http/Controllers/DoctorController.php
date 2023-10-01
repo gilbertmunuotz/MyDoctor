@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Appointment;
 use App\Models\doctors;
 use App\View\Components\AppLayout;
@@ -9,21 +10,18 @@ use Illuminate\Support\Facades\Auth;
 
 class DoctorController extends Controller
 {
-    public function view_mypatients() 
-     {
-     
+    public function view_mypatients(Request $id)
+    {
+
         if (Auth::id()) {
             $userid = Auth::user()->id;
 
-        $patients = Appointment::where('doctor', $userid)->get();
-        //dd($patients);
-        return view('doctor.mypatients', ['patients' => $patients]);
+            $docid = doctors::find($id);
+            $patients = $docid = Appointment::where('doctor', $id)->get();
+
+            return view('doctor.mypatients', compact('patients'));
+        } else {
+            return redirect()->back()->with('message', 'You Have No Patients Today');
         }
-
-       else {
-        return redirect()->back()->with('message', 'You Have No Patients Today');
-       }
-
     }
-
 }

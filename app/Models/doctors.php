@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+// use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class doctors extends Model
 {
@@ -15,8 +16,8 @@ class doctors extends Model
         'user_id',
     ];
 
-    public function patient(): BelongsTo
+    public function patient(): HasMany
     {
-        return $this->belongsTo(Appointment::class,);
+        return $this->hasMany(Appointment::class,);
     }
 }

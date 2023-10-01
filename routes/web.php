@@ -43,4 +43,4 @@ Route::get('/EditMyAppointment/{id}', [HomeController::class, 'edit_myappoints']
 Route::post('/updatingappoints/{id}', [HomeController::class, 'updatemyappoints']);//Updating Patients Appointments
 
 
-Route::get('/MyPatients/{id}', [DoctorController::class, 'view_mypatients']);//Doctor Views Patients
+Route::get('/MyPatients/{id}',[DoctorController::class, 'view_mypatients']);//Doctor Views His/Her Appointments 
